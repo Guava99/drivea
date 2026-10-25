@@ -3,13 +3,21 @@ import { useState } from 'react'
 import { useNavigate,Link } from 'react-router-dom';
 import{Input} from '../components/ui/Input'
 import { Mail,User,Lock } from "lucide-react";
+import { useApp } from '../context/AppContext';
 const Login = ({mode="login"}) => {
   const isRegister = mode === "register";
   const navigate =useNavigate()
+  const{login,register}=useApp()
   const[form,setForm]=useState({name:"",email:"",password:""}) 
   const [isLoading,setIsLoading]=useState(false);
   const updateField=(key,value)=>setForm((prev)=>({...prev,[key]:value}));
   const handleSubmit=async(e)=>{
+    e.preventDefault();
+    setIsLoading(true)
+    const action=isRegister ? register : login;
+    const success=await action(form.name,form.email,form.password)
+    setIsLoading(false)
+    if(success)navigate("/")
 
   }
   return (
