@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useNavigate,Link } from 'react-router-dom';
 import{Input} from '../components/ui/Input'
+import{Button} from '../components/ui/Button'
 import { Mail,User,Lock } from "lucide-react";
 import { useApp } from '../context/AppContext';
 const Login = ({mode="login"}) => {
@@ -81,12 +82,12 @@ const Login = ({mode="login"}) => {
                         required
                         />
 
-                        <button type='submit' variant='primary' className="w-full py-3"
+                        <Button type='submit' variant='primary' className="w-full py-3"
                         isLoading={isLoading}>
                             <span className="font-medium text-base">
                                 {isRegister ? "Register Account" : "Sign In"}
                             </span>
-                        </button>
+                        </Button>
                 
                </form>
                <div className='text-center pt-2'>
