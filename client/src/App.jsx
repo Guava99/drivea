@@ -5,6 +5,9 @@ import Login from './pages/Login'
 import Drive from './pages/Drive'
 import ProtectedRoute from './components/ui/auth/ProtectedRoute'
 import DashboardLayout from './components/layout/DashboardLayout'
+import SharedFile from './pages/SharedFile'
+import Trash from './pages/Trash'
+import SharedWithme from './pages/SharedWithMe'
 const App = () => {
  
   return (
@@ -13,10 +16,15 @@ const App = () => {
       <Routes>
         <Route path="/login" element={<Login mode="login"/>}/>
         <Route path="/register" element={<Login mode="register"/>}/>
+        <Route path="/s/:token" element={<SharedWithme/>}/>
+
         {/* Private Routes*/ }
         <Route element={<ProtectedRoute/>}>
         <Route element={<DashboardLayout/>}>
           <Route path="/" element={<Drive/>}/>
+          <Route path="/drive/:folderId" element={<Drive/>}/>
+          <Route path="/shared" element={<SharedFile/>}/>
+          <Route path="/trash" element={<Trash/>}/>
         </Route>
         </Route>
        
